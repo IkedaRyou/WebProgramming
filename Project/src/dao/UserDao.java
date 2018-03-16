@@ -11,6 +11,7 @@ import java.util.List;
 
 import model.User;
 
+
 /**
  * ユーザテーブル用のDao
  * @author takano
@@ -107,36 +108,25 @@ public class UserDao {
             }
         }
     }
-    public User registration(String loginId, String password,String name, Date birthDate) {
+    public void registration(String loginId, String password,String name, String birthDate) {
         Connection conn = null;
         try {
             // データベースへ接続
             conn = DBManager.getConnection();
 
             // SELECT文を準備
-            String sql = "INSERT * FROM user WHERE login_id = ? and password = ? and name = ? and birthDate = ?";
+            String sql = "INSERT INTO user(login_id, name, password,birth_date,create_date,update_date) VALUES(?,?,?,?,now(),now())";
 
              // SELECTを実行し、結果表を取得
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, loginId);
-            pStmt.setString(2, password);
-            pStmt.setString(3, name);
-            pStmt.setDate(4, birthDate);
-            ResultSet rs = pStmt.executeQuery();
-
-             // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
-            if (!rs.next()) {
-                return null;
-            }
-
-            String loginIdData = rs.getString("login_id");
-            String nameData = rs.getString("name");
-            Date birthDateData = rs.getDate("birthDate");
-            return new User(loginIdData, nameData,birthDateData);
+            pStmt.setString(2, name);
+            pStmt.setString(3, password);
+            pStmt.setString(4, birthDate);
+            int rs = pStmt.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         } finally {
             // データベース切断
             if (conn != null) {
@@ -144,7 +134,6 @@ public class UserDao {
                     conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    return null;
                 }
             }
         }

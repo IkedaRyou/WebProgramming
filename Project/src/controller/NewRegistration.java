@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
-import model.User;
 
 /**
  * Servlet implementation class NewRegistration
@@ -41,12 +40,17 @@ public class NewRegistration extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// リクエストパラメータの入力項目を取得
 		String loginId = request.getParameter("loginId");
-		String password = request.getParameter("password");
 		String name = request.getParameter("name");
-		Date birthDate = request.getParameter("birthDate");
+		String password = request.getParameter("password");
+		String birthDate = request.getParameter("birthDate");
+		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
 		UserDao userDao = new UserDao();
-		User user = userDao.registration(loginId, password,name,birthDate);
+		userDao.registration(loginId, name,password, birthDate);
+
+		// ユーザ一覧のサーブレットにリダイレクト
+		response.sendRedirect("UserListServlet");
 
 	}
 

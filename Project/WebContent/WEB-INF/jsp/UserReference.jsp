@@ -43,8 +43,8 @@
     <div class="col">
 <h3><small>>${user.loginId}</small></h3><br>
 <h3><small>${user.name}</small></h3><br>
-<h3><small>${user.birth_date}</small></h3><br>
-<h3><small>${user.create_date}</small></h3><br>
+<h3><small>${user.birthDate}</small></h3><br>
+<h3><small>${user.createDate}</small></h3><br>
 <h3><small><span id="view_todayE"></span>
 
 <script type="text/javascript">

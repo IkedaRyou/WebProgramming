@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head><!-- Required meta tags -->
@@ -45,6 +46,9 @@
 	</nav>
 <div align="center"><h1>NewRegistration<span class="badge badge-secondary"></h1>
 <div class="container">
+<c:if test="${errMsg != null}">
+				<div class="alert alert-danger" role="alert">${errMsg}</div>
+			</c:if>
 <form action="NewRegistration" class="form-horizontal" method="post">
 <div class="row">
      <div class="form-group row">
@@ -74,7 +78,8 @@
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label" name = "birthDate">BirthDay</label>
     <div class="col-sm-10">
-<input type="text" size="120" id="test1" class="form-control" />
+<input type="text" size="120" name=birthDate id="test1" class="form-control" />
+<button type="submit" class="btn btn-primary">Update</button>
     </div>
   </div>
 </form>
@@ -85,7 +90,8 @@
 
   </div>
 </div>
-<button type="submit" class="btn btn-primary">Update</button>
+<form action="NewRegistration" class="form-horizontal" method="post">
+</form>
 <br>
 <br>
 <br>

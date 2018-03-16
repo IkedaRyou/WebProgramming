@@ -48,9 +48,9 @@
 	<div class="container">
 
 	<div align="center"><h1>User List<span class="badge badge-secondary"></h1>
-	<form>
+	<form action="NewRegistration">
 	<div align="right" style="margin-right:20px;">
-	<button type="button" class="btn btn-primary"value="リンク" onClick="UserCreateServlet">Create Account</button>
+	<button type="button" class="btn btn-primary"value="次画面へ遷移" onClick="location.href='http://localhost:8080/Usermanagement/NewRegistration'">Create Account</button>
 		</div>
 		<div class="form-group">
 			<label >LoginID</label> <input
