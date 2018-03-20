@@ -45,17 +45,20 @@
 <div align="center"><h1>UserUpdate<span class="badge badge-secondary"></h1>
 <div class="container">
 <form action="Update" class="form-horizontal" method="post">
+
+ <input  type="hidden" name="id" value="${user.id }" >
+
 <div class="row">
      <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">LoginID</label>
     <div align="right" class="col-sm-10">
- <input  type="text" size="120" class="form-control-right form-control" id="exampleInputPassword1" >
+ <input  type="text" size="120" class="form-control-right form-control" name=loginId id="exampleInputPassword1"value="${user.loginId }" >
     </div>
   </div><br>
    <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
-     <input type="password" size="120" class="form-control-right form-control" id="exampleInputPassword1" >
+     <input type="password" size="120" class="form-control-right form-control" name=password id="exampleInputPassword1" >
     </div>
   </div>
    <div class="form-group row">
@@ -67,19 +70,20 @@
    <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
     <div class="col-sm-10">
- <input type="text" size="120" class="form-control-right form-control" id="exampleInputPassword1" >
+ <input type="text" size="120" class="form-control-right form-control" name=name id="exampleInputPassword1" value="${user.name }">
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">BirthDay</label>
     <div class="col-sm-10">
-<input type="text" size="120" id="test1" class="form-control"/>
+<input type="text" size="120" id="test1" name = "birthDate" class="form-control" value="${user.birth_date }"/>
+<button type="submit" class="btn btn-primary">Update</button>
     </div>
   </div>
 </form>
 
 </div>
-<button type="submit" class="btn btn-primary">Update</button>
+
 </div>
 <br>
 <br>

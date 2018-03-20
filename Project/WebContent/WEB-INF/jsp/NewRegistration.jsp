@@ -50,6 +50,7 @@
 				<div class="alert alert-danger" role="alert">${errMsg}</div>
 			</c:if>
 <form action="NewRegistration" class="form-horizontal" method="post">
+ <input  type="hidden" name="id" value="${user.id }" >
 <div class="row">
      <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">LoginID</label>

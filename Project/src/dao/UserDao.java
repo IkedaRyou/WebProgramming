@@ -138,6 +138,68 @@ public class UserDao {
             }
         }
     }
+    public  void update(String loginId, String password,String name, String birthDate,String Id) {
+        Connection conn = null;
+        try {
+            // データベースへ接続
+            conn = DBManager.getConnection();
+
+            // SELECT文を準備
+            String sql = "UPDATE user SET login_id=?, name=?, password=?,birth_date=?,create_date=now(),update_date=now() WHERE id =?";
+
+            // SELECTを実行し、結果表を取得
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, loginId);
+            pStmt.setString(2, name);
+            pStmt.setString(3, password);
+            pStmt.setString(4, birthDate);
+            pStmt.setString(5, Id);
+            int rs = pStmt.executeUpdate();
+
+             // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // データベース切断
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void delete(String loginId) {
+        Connection conn = null;
+        try {
+            // データベースへ接続
+            conn = DBManager.getConnection();
+
+            // SELECT文を準備
+            String sql = "DELETE FROM user WHERE id =?";
+
+             // SELECTを実行し、結果表を取得
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+
+            int rs = pStmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // データベース切断
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     /**
      * 全てのユーザ情報を取得する
      * @return

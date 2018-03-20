@@ -30,6 +30,8 @@
 			</span>
 		</div>
 	</nav>
+<form action="UserDeleteServlet" method="post">
+<input  type="hidden" name="id" value="${user.id }" >
 <div align="center">
 <div class="container">
 <h1 >Confirm Deleting the UserID</h1>
@@ -51,7 +53,6 @@
 </div>
 <input class="btn btn-primary" type="submit" value="Submit">
 </div>
-<form>
 </form>
 
 </body>

@@ -106,7 +106,7 @@
                      <!-- TODO 未実装；ログインボタンの表示制御を行う -->
                      <td >
                        <a class="btn btn-primary" type="submit" href="UserDetailServlet?id=${user.id}">Detail</a>
-                       <a class="btn btn-success" type="submit" href="UserUpdateServlet?id=${user.id}">Update</a>
+                       <a class="btn btn-success" type="submit" href="Update?id=${user.id}">Update</a>
                        <a class="btn btn-danger" type="submit" href ="UserDeleteServlet?id=${user.id}">Delete</a>
                      </td>
                    </tr>
