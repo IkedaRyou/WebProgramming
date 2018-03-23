@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.Util;
 import model.User;
 
 
@@ -37,7 +38,7 @@ public class UserDao {
              // SELECTを実行し、結果表を取得
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, loginId);
-            pStmt.setString(2, password);
+            pStmt.setString(2, Util.passwordconvert(password));
             ResultSet rs = pStmt.executeQuery();
 
              // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
@@ -108,7 +109,7 @@ public class UserDao {
             }
         }
     }
-    public void registration(String loginId, String password,String name, String birthDate) {
+    public void registration(String loginId, String name,String password, String birthDate) {
         Connection conn = null;
         try {
             // データベースへ接続
@@ -138,7 +139,7 @@ public class UserDao {
             }
         }
     }
-    public  void update(String loginId, String password,String name, String birthDate,String Id) {
+    public  void update(String loginId, String name,String password, String birthDate,String Id) {
         Connection conn = null;
         try {
             // データベースへ接続
@@ -151,7 +152,7 @@ public class UserDao {
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, loginId);
             pStmt.setString(2, name);
-            pStmt.setString(3, password);
+            pStmt.setString(3, Util.passwordconvert(password));
             pStmt.setString(4, birthDate);
             pStmt.setString(5, Id);
             int rs = pStmt.executeUpdate();
@@ -173,7 +174,7 @@ public class UserDao {
         }
     }
 
-    public void delete(String loginId) {
+    public void delete(String Id) {
         Connection conn = null;
         try {
             // データベースへ接続
@@ -184,7 +185,7 @@ public class UserDao {
 
              // SELECTを実行し、結果表を取得
             PreparedStatement pStmt = conn.prepareStatement(sql);
-
+            pStmt.setString(1, Id);
             int rs = pStmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -200,6 +201,47 @@ public class UserDao {
             }
         }
     }
+    public User search(String loginId) {
+        Connection conn = null;
+        try {
+            // データベースへ接続
+            conn = DBManager.getConnection();
+
+            // SELECT文を準備
+            String sql = "SELECT * FROM user where login_id not in ('admin')";
+
+            if(!loginId .equals("")) {
+            	sql += " and login_id = '" + loginId + "'";
+            }
+
+             // SELECTを実行し、結果表を取得
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+             // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
+            if (!rs.next()) {
+                return null;
+            }
+            String loginId2 = rs.getString("loginId");
+            String name = rs.getString("name");
+            Date birthDate = rs.getDate("birthDate");
+            return new User(loginId2, name, birthDate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            // データベース切断
+            // 以下findAllと同じ処理なので略
+        	 if (conn != null) {
+                 try {
+                     conn.close();
+                 } catch (SQLException e) {
+                     e.printStackTrace();
+                     return null;
+                 }
+             }
+        }
+    }
+
     /**
      * 全てのユーザ情報を取得する
      * @return
@@ -214,7 +256,7 @@ public class UserDao {
 
             // SELECT文を準備
             // TODO: 未実装：管理者以外を取得するようSQLを変更する
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user where login_id not in ('admin')";
 
              // SELECTを実行し、結果表を取得
             Statement stmt = conn.createStatement();

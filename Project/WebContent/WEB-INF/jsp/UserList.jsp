@@ -1,10 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <meta charset="UTF-8">
@@ -41,14 +44,14 @@
 				<li class="nav-item"><a class="nav-link" href="#"></a></li>
 			</ul>
 			<span class="navbar-text"> UserName
-			<span class="navbar-text"><a href=LoginServlet">Logout</a>
+			<span class="navbar-text"><a href="LoginServlet">Logout</a>
 			</span>
 		</div>
 	</nav>
 	<div class="container">
 
 	<div align="center"><h1>User List<span class="badge badge-secondary"></h1>
-	<form action="NewRegistration">
+	<form action="NewRegistration" method="post">
 	<div align="right" style="margin-right:20px;">
 	<button type="button" class="btn btn-primary"value="次画面へ遷移" onClick="location.href='http://localhost:8080/Usermanagement/NewRegistration'">Create Account</button>
 		</div>
@@ -56,7 +59,7 @@
 			<label >LoginID</label> <input
 				type="text" class="form-control" id="exampleInputEmail1"
 				aria-describedby="emailHelp" > <small
-				id="emailHelp" class="form-text text-muted">
+				id="emailHelp" class="form-text text-muted" placeholder="Login ID">
 				</small>
 		</div>
 		<div class="form-group">

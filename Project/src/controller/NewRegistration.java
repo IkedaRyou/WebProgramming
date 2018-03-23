@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
+import model.User;
 
 /**
  * Servlet implementation class NewRegistration
@@ -30,7 +31,14 @@ public class NewRegistration extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		String Id = request.getParameter("id");
+		// 確認用：idをコンソールに出力
+		System.out.println(Id);
+		// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
+		UserDao userDao = new UserDao();
+		User user = userDao.findByID(Id);
+		// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+		request.setAttribute("user",user);
 		// TODO Auto-generated method stub
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/NewRegistration.jsp");
 		dispatcher.forward(request, response);

@@ -36,7 +36,7 @@
 <div class="container">
 <h1 >Confirm Deleting the UserID</h1>
 <br>
-<h4>Rally do you delete your LoginID :id0001?</h4>
+<h4>Rally do you delete your LoginID :${user.id }</h4>
 <br>
 <br>
 <br>

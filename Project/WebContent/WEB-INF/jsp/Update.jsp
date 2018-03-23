@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head><!-- Required meta tags -->
@@ -45,7 +48,9 @@
 <div align="center"><h1>UserUpdate<span class="badge badge-secondary"></h1>
 <div class="container">
 <form action="Update" class="form-horizontal" method="post">
-
+<c:if test="${errMsg != null}">
+				<div class="alert alert-danger" role="alert">${errMsg}</div>
+			</c:if>
  <input  type="hidden" name="id" value="${user.id }" >
 
 <div class="row">
@@ -56,27 +61,27 @@
     </div>
   </div><br>
    <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
     <div class="col-sm-10">
-     <input type="password" size="120" class="form-control-right form-control" name=password id="exampleInputPassword1" >
+     <input type="text" size="120" class="form-control-right form-control" name=name id="exampleInputPassword1" value="${user.name }">
+    </div>
+  </div>
+   <div class="form-group row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password<br></label>
+    <div class="col-sm-10">
+<input type="password" size="120" class="form-control-right form-control" name=password id="exampleInputPassword1" >
     </div>
   </div>
    <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">Password<br>(Confirm)</label>
     <div class="col-sm-10">
-<input type="password" size="120" class="form-control-right form-control" id="exampleInputPassword1" >
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">UserName</label>
-    <div class="col-sm-10">
- <input type="text" size="120" class="form-control-right form-control" name=name id="exampleInputPassword1" value="${user.name }">
+ <input type="password" size="120" class="form-control-right form-control"  id="exampleInputPassword1" >
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword" class="col-sm-2 col-form-label">BirthDay</label>
     <div class="col-sm-10">
-<input type="text" size="120" id="test1" name = "birthDate" class="form-control" value="${user.birth_date }"/>
+<input type="text" size="120" id="test1" name = "birthDate" class="form-control" value="${user.birthDate }"/>
 <button type="submit" class="btn btn-primary">Update</button>
     </div>
   </div>

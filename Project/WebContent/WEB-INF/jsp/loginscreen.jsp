@@ -45,10 +45,10 @@
 					<h1>Login</h1>
 					<form class="form-signin" action="LoginServlet" method="post">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label> <input
+							<label for="exampleInputEmail1">Login ID</label> <input
 								type="text" name="loginId" class="form-control"
 								id="inputLoginId" aria-describedby="emailHelp"
-								placeholder="Enter email"> <small id="emailHelp"
+								placeholder="Enter Login ID"> <small id="emailHelp"
 								class="form-text text-muted">We'll never share your
 								email with anyone else.</small>
 						</div>

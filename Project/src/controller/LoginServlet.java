@@ -35,7 +35,14 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
-
+		String Id = request.getParameter("id");
+		// 確認用：idをコンソールに出力
+		System.out.println(Id);
+		// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
+		UserDao userDao = new UserDao();
+		User user = userDao.findByID(Id);
+		// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+		request.setAttribute("user",user);
 		// フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginscreen.jsp");
 		dispatcher.forward(request, response);

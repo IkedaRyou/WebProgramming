@@ -50,6 +50,11 @@ public class UserListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO 未実装：検索処理全般
+		String loginId = request.getParameter("loginId");
+
+		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
+		UserDao userDao = new UserDao();
+		userDao.search(loginId);
 	}
 
 }

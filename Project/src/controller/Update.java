@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
+import model.User;
 
 /**
  * Servlet implementation class Update
@@ -30,7 +31,15 @@ public class Update extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+// URLからGETパラメータとしてIDを受け取る
+		String Id = request.getParameter("id");
+		// 確認用：idをコンソールに出力
+		System.out.println(Id);
+		// TODO  未実装：idを引数にして、idに紐づくユーザ情報を出力する
+		UserDao userDao = new UserDao();
+		User user = userDao.findByID(Id);
+		// TODO  未実装：ユーザ情報をリクエストスコープにセットしてjspにフォワード
+		request.setAttribute("user",user);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/Update.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -39,6 +48,8 @@ public class Update extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 request.setCharacterEncoding("UTF-8");
+
 		// リクエストパラメータの入力項目を取得
 		// URLからGETパラメータとしてIDを受け取る
 		String loginId = request.getParameter("loginId");
